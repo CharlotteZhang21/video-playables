@@ -27,6 +27,40 @@ PiecSettings.audio = {
     startTime: 0
 }
 
+PiecSettings.script = {
+    'disney1': {
+        video: 'video1.mp4',
+        from: 10,
+        to: 15,
+        tips: [
+            { text: "Choose your character", htmlTag:'choose-your-character',  src: 'tooltip.png', fontColor: "#ffffff", effect: 'float'},
+        ],
+        interactions: [
+            { from: 0, to: 5, typeOfInteraction: 'tap', htmlTag: 'interaction-area-1', onSuccess: 'disney2', idleEffect:'pulse', onInteractEffect:'spawnStars'},
+            { from: 5, typeOfInteraction: 'tap', htmlTag: 'interaction-area-2', onSuccess: 'disney3' }
+        ],
+        autoplay: {after: 2000, play: 'disney3'},
+    },
+    'disney2': {
+        video: 'video2.mp4',
+        from: 20,
+        to: 27,
+        interactions: [
+            { when: 'during', typeOfInteraction: 'minigame2', htmlTag: 'collectible-area-1', consequences: 'coins++'},
+            { when: 'onStop', typeOfInteraction: 'swipe', htmlTag: 'interaction-area-1', onSuccess: 'disney2', conditions: 'coins>=100' },
+            { when: 'onStop', typeOfInteraction: 'swipe', htmlTag: 'interaction-area-2', onSuccess: 'disney3', conditions: 'coins>=200' },
+            { when: 'onStop', typeOfInteraction: 'swipe', htmlTag: 'interaction-area-3', onSuccess: 'disney4', conditions: 'coins<100' },
+        ]
+    },
+    'disney3': {
+        video: 'video2.mp4',
+        from: 40,
+        to: 50,
+        interactions: [
+            { when: 'onStop', typeOfInteraction: 'minigame1', htmlTag: 'interaction-area-1', onSuccess: 'disney5', onFail: 'disney6', consequences: 'coins+=100' },
+        ]
+    },
+};
 
 
 //////// DEFAULT SETTINGS FOR SLOT GAMES ////////

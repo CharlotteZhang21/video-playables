@@ -80,12 +80,12 @@ import * as CustomPngSequencesRenderer from '../utils/custom-png-sequences-rende
 
         /*==================video===========*/
 
-        this.videoList = PiecSettings.videos;
+        this.currentVideoScript = PiecSettings.script.disney1;
 
 
         this.video = document.getElementById('videoBg');
         this.source = document.createElement('source');
-        this.setNextVideo(this.videoList.intro);
+        this.setNextVideo(this.currentVideoScript);
         this.video.appendChild(this.source);
         this.video.play();
         this.video.controls = false;
@@ -114,26 +114,32 @@ import * as CustomPngSequencesRenderer from '../utils/custom-png-sequences-rende
 
      /*==================video===========*/
      setNextVideo(videoObj){
+        console.log(videoObj);
         var video_name;
-        if(videoObj != null && this.video.name == videoObj.name )
+        if(videoObj != null && this.video.name == videoObj.video )
             return;
 
         if(videoObj != null){
-            video_name = PiecSettings.assetsDir + videoObj.name + '.mp4';   
-            this.video.name = videoObj.name;
-            this.setVideoCurrentTimer(videoObj.startTime);        
-        } 
+            video_name = PiecSettings.assetsDir + videoObj.video;   
+            this.video.name = videoObj.video;
+            this.setVideoDuration(videoObj.from, videoObj.to);        
+        }   
         else
             video_name = '';
 
         this.source.setAttribute('src', video_name);
        
-
-
     }
 
-    setVideoCurrentTimer(time){
-         this.video.currentTime = time;
+    setVideoDuration(startTime, endTime){
+         this.video.currentTime = startTime;
+         var _this = this;
+         this.video.addEventListener("timeupdate", function(){
+            if(this.currentTime >= endTime) {
+                // pause the playback
+                _this.showInteractionScreen();
+            }
+         });
     }
     /*==================video===========*/
 
@@ -167,18 +173,18 @@ import * as CustomPngSequencesRenderer from '../utils/custom-png-sequences-rende
 
      onInteract() {
         /*==================video===========*/
-        this.setNextVideo(this.videoList.path);
+        var nextVideoTag = this.currentVideoScript.interactions[0].onSuccess;
+        this.setNextVideo(PiecSettings.script[nextVideoTag]);
 
         this.video.load();
 
-        this.setVideoCurrentTimer(this.game.global.interaction * 10);
+        // this.setVideoDuration(PiecSettings.script[1], 100);
 
-        this.game.time.events.add(10, function(){
+        this.game.time.events.add(0, function(){
+            console.log("play");
             this.video.play();
         }, this);
 
-        console.log(this.game.global.interaction);
-         
 
         /*==================video===========*/
 
@@ -224,13 +230,20 @@ import * as CustomPngSequencesRenderer from '../utils/custom-png-sequences-rende
      }
 
      onInteractionComplete() {
-
         if(this.game.global.restarted){
 
             this.lose = false;
             this.game.global.restarted = false;
         }
 
+        this.showInteractionScreen();
+
+        
+     }
+
+     showInteractionScreen(){
+         
+        console.log("show");
         var delay = 1000;
 
         var noInteractionDelay = 3000;
