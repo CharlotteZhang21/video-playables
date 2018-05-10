@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0"/>
+		<meta name="author" content="Vungle">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Vungle Endcard</title>
+		<script src="vungle.js"></script>
+		<link rel="stylesheet" href="vungle.css">
+		<link rel="stylesheet" href="style.css">
+
+		<!-- logo strike start -->
+		<style>#vungle-footer {display: none !important; }</style>
+		<!-- logo strike end -->
+	</head>
+	<body ontouchstart="ontouchstart" class="preload">
+		<div id="vungle-header" class="portrait-dark landscape-dark"><a id="vungle-close" href="javascript:void(0)" onclick="doSomething('close')"><span class="vungicon-close"></span></a></div>
+		<div id="vungle-footer" class="portrait-dark landscape-dark portrait-center landscape-right"><span class="footer vungicon-vungle"></span></div>
+
+		<!-- IEC Creative starts here-->
+
+		<div id="wrap">
+			<div class="layout" id="button"><img src="attack.png"></div>
+			<video id='videoBg' width="100%" Autoplay=autoplay>
+			  <!-- <source src="videoBg.mp4" type="video/mp4"> -->
+			</video>
+		</div>
+
+
+		<!-- IEC Creative ends here -->
+
+		<script type="text/javascript">
+
+			/** replace the id to the item to click **/
+
+			// var itemToInteract = document.getElementById('');
+
+			var video = null;
+
+			window.onload = function() {
+				removeClass(document.body, 'preload');
+
+				//show close button 3s after the game is loaded
+				setTimeout(function(){
+
+					showVungleCloseBtn();
+
+				}, 3000);
+
+
+				//show close button when the user clicks
+
+				// video = document.getElementById('videoBg');
+				loadVideo();
+
+				window.addEventListener("click", function(){
+					toggleVideoPlay();
+				})
+
+			};
+
+			function loadVideo() {
+				var video = document.getElementById('videoBg');
+				var source = document.createElement('source');
+
+				source.setAttribute('src', 'videoBg.mp4');
+
+				video.appendChild(source);
+				video.play();
+
+				setTimeout(function() {  
+				    video.pause();
+
+				    source.setAttribute('src', 'videoBg2.mp4'); 
+
+				    video.load();
+				    video.play();
+				}, 3000);
+			}
+
+			function toggleVideoPlay(){
+				video.paused? video.play():video.pause();
+			}
+
+			window.onresize = function() {
+			};
+
+			document.ontouchmove = function(e){
+				e.preventDefault();
+			}
+
+			//show close button function
+			function showVungleCloseBtn() {
+
+		        document.getElementById("vungle-close").className = 'visible';
+
+		    }
+		</script>
+	</body>
+</html>
