@@ -13,7 +13,8 @@ class Boot extends Phaser.State {
 
         var game = this.game;
 
-        // custom game events here        
+        // custom game events here
+        game.onInteract = new Phaser.Signal();        
         game.onGameComplete = new Phaser.Signal(); // generic event hook
 
         if (typeof piec !== 'undefined') {
@@ -76,6 +77,7 @@ class Boot extends Phaser.State {
             interaction: 0,
             reelsSpinCompleted: 0,
             isComplete: false,
+            currentVideoScript: null,
         };
     }
 }

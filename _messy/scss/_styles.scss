@@ -89,6 +89,23 @@ a {
     bottom: 16%;
 }
 
+/*
+ * customised ------------------------------------------------------------
+ */
+
+ #interaction-area-1, #interaction-area-2 {
+    width: 30%;
+    height: 30%;
+    top: 20%;
+ }
+
+ #interaction-area-1 {
+    left: 20%;
+ }
+ #interaction-area-2 {
+    right: 20%;
+ }
+
 
 @media all and (orientation: landscape) {
    

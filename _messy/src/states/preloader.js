@@ -21,7 +21,13 @@
      loadResources() {
 
          this.game.load.image('cta', PiecSettings.assetsDir + 'download.png');
-         this.game.load.image('cta-2', PiecSettings.assetsDir + 'download_2.png');
+
+
+         //----------*my customised preload*-----------
+         this.game.load.image('btn_innocent', PiecSettings.assetsDir + 'btn_innocent.png');
+         this.game.load.image('btn_naughty', PiecSettings.assetsDir + 'btn_naughty.png');
+         
+         // this.game.load.image('cta-2', PiecSettings.assetsDir + 'download_2.png');
 
          // this.game.global.animations = {};
 
