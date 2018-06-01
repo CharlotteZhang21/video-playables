@@ -16,6 +16,7 @@ class Boot extends Phaser.State {
         // custom game events here
         game.onInteract = new Phaser.Signal();        
         game.onGameComplete = new Phaser.Signal(); // generic event hook
+        game.onClose = new Phaser.Signal();
 
         if (typeof piec !== 'undefined') {
             // public API methods
@@ -33,6 +34,10 @@ class Boot extends Phaser.State {
 
                 game.destroy();
             };
+
+            piec.onClose = function () {
+                game.onClose.dispatch();
+            }
 
         }
 

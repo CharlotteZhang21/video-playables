@@ -4,6 +4,7 @@ import AudioController from '../prefabs/audio-controller';
 import VideoController from '../prefabs/video-controller';
 import VideoPlayableHudController from '../prefabs/video-playable-hud-controller';
 import VideoPlayableVariablesController from '../prefabs/video-playable-variables-controller';
+import * as VideoPlayableUtil from '../utils/video-playable-util';
 
 /*
 ===State Controller===
@@ -13,11 +14,16 @@ Does so by processing and reading scripts that have been previously defined on t
 */
 class VideoPlayableStateController {
 
-    constructor(game, container, initialState, scripts, variables) {
+    constructor(game, container, initialState, scripts, variables, audios, initialAudio) {
         this.game = game;
         this.initialState = initialState;
         this.scripts = scripts;
         this.firstInteraction = false;
+
+        /*********** init audio *************/
+        this.audios = audios;
+        this.currentAudio = this.audios[initialAudio];
+        /*********** init audio *************/
 
         this.videoController = new VideoController(container);
         this.audioController = new AudioController();
@@ -46,7 +52,7 @@ class VideoPlayableStateController {
         this.interactiveElementsController.onInteract.add(function(nextStateName) {
             if (!this.firstInteraction) {
                 this.firstInteraction = true;
-                this.playAudio();
+                this.playAudio(this.currentAudio);
             }
 
             this.cancelAutoPlayTimer();
@@ -67,6 +73,7 @@ class VideoPlayableStateController {
             var variableName = tag.replace('-counter', '');
             this.videoPlayableVariablesController.setVariable(variableName, value);
         }, this);
+
     }
 
     update() {
@@ -91,6 +98,15 @@ class VideoPlayableStateController {
             this.game.global.gameComplete = true;
             this.game.onGameComplete.dispatch();
         }
+
+        if(this.currentAudio.nextAudio !== undefined && this.currentAudio.nextAudio != '') {
+            var nextAudio = this.audios[this.currentAudio.nextAudio];
+            if(VideoPlayableUtil.checkIfShouldBeEnabled(nextAudio.endTime, nextAudio.startTime, this.videoController.video.currentTime)){
+                this.audioController.pause(this.currentAudio.src);
+                this.currentAudio = this.audios[this.currentAudio.nextAudio];
+                this.playAudio(this.currentAudio);
+            }
+        }
     }
 
     transitionToState(stateKeyName = "") {
@@ -98,8 +114,6 @@ class VideoPlayableStateController {
         if (stateKeyName != ""){
 
             this.currentState = this.scripts[stateKeyName];
-       
-            console.log(this.currentState)     
     
             var videoPath = PiecSettings.assetsDir + this.currentState.video;
             this.videoController.play(videoPath, { "from": this.currentState.from, "to": this.currentState.to, "loop": this.currentState.loop });
@@ -116,11 +130,18 @@ class VideoPlayableStateController {
         
     }
 
-    playAudio() {
+    playAudio(currentAudio) {
+        console.log("playAudio");
+        console.log(currentAudio);
+        var src = currentAudio.src;
+        var args = currentAudio;
         this.game.time.events.add(500, function() {
-            var audioPath = PiecSettings.assetsDir + PiecSettings.audio.src;
-            this.audioController.play(PiecSettings.audio.src, audioPath);
+            var audioPath = PiecSettings.assetsDir + src;
+            this.audioController.play(src, audioPath, args);
         }, this);
+    }
+    pauseAllAudio(){
+        this.audioController.muteAll();
     }
 
     setAutoPlayTimer(autoplay){

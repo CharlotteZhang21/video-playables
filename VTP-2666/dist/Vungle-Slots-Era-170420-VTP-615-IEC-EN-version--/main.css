@@ -236,87 +236,43 @@ a {
   top: 0;
   z-index: 10; }
 
-#cta-container,
-#cta-container-final,
-#cta-container-final-2 {
-  width: 65%;
-  height: 10%;
+#logo {
+  right: auto;
+  top: 0%;
+  width: 0; }
+
+#logo-final {
+  width: 0;
+  height: 0;
+  top: 10%;
   left: 0;
   right: 0;
-  bottom: 2%; }
+  z-index: 100; }
+
+#cta-container,
+#cta-container-final {
+  width: 24%;
+  height: 10vw;
+  right: 0;
+  bottom: 0%;
+  -webkit-transform: none;
+  transform: none; }
 
 #cta-container-final {
-  width: 75%;
-  bottom: 17%; }
-
-#cta-container-final-2 {
-  width: 80%;
-  bottom: 16%; }
+  width: 100%;
+  bottom: 5%; }
 
 /*
  * customised ------------------------------------------------------------
  */
-#character-choice-1, #character-choice-2 {
-  width: 30%;
-  height: 30%;
-  top: 20%; }
-
-#character-choice-1 {
-  left: 10%; }
-
-#character-choice-2 {
-  right: 10%; }
-
-#path-choice-1, #path-choice-2 {
-  width: 45%;
-  height: 100%;
-  top: 0%; }
-
-#path-choice-1 {
-  left: 3%; }
-
-#path-choice-2 {
-  right: 3%; }
-
-#store-choice-1, #store-choice-2 {
-  width: 19%;
-  height: 33%;
-  top: 39%; }
-
-#store-choice-1 {
-  left: 47.5%; }
-
-#store-choice-2 {
-  right: 11.5%; }
-
-#coin-counter {
-  width: 20%;
-  height: 10%;
-  top: 5%;
-  right: 10%; }
-
-#coins-area {
-  width: 50%;
-  height: 50%;
-  top: 20%;
-  right: 0%; }
-
-@media all and (orientation: landscape) {
-  #cta-container {
-    width: 38%;
-    height: 10vw;
-    right: 0;
-    left: 0;
-    bottom: 4%;
-    -webkit-transform: none;
-    transform: none; }
-  #cta-container-final,
-  #cta-container-final-2 {
-    width: 40%;
-    height: 10vw;
-    bottom: 8%;
-    transform: none;
-    -webkit-transform: none; } }
+#spin-button {
+  width: 24%;
+  height: 10vw;
+  right: 0;
+  left: 0;
+  bottom: 0%;
+  -webkit-transform: none;
+  transform: none; }
 
 /* iphone X */
 @media all and (orientation: landscape) {

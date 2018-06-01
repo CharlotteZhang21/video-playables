@@ -35,14 +35,14 @@
 
 <body class="preload">
     <div id="vungle-header" class="portrait-light landscape-light">
-        <a id="vungle-close" class="" data-icon="i" onclick="doSomething('close')"></a>
+        <a id="vungle-close" class="" data-icon="i" onclick="closeAndMute();"></a>
     </div>
     <div id="vungle-footer" class="portrait-light landscape-light portrait-left landscape-left"><span class="footer" data-icon="q"></span></div>
 
     <div id="wrap">
 
         <!-- <video src="video.mp4" playsinline loop autoplay></video> -->
-        <video preload playsinline muted autoplay id='videoBg' width="100%"></video>
+        <video preload playsinline muted autoplay id='videoBg' height="100%"></video>
         
         
         <div class="layout-item" id="spin-button"></div>
@@ -56,10 +56,10 @@
         </div>
         <div class="layout-item" id="cta-background">
         </div>
-
+<!-- 
         <div class="layout-item" id="logo">
         </div>
-        <div class="layout-item" id="logo-final">
+        <div class="layout-item" id="logo-final"> -->
         </div>
     </div>
     <!-- IEC Creative ends here -->
@@ -83,6 +83,16 @@
     <!-- /build -->
     <script>
     // call out to vungle SDK
+
+    function closeAndMute(){
+         piec.onClose();
+         setTimeout(function(){
+             doSomething('close');
+
+         }, 100);
+
+    }
+
     function doSomething(s) {
         return actionClicked(s);
     }

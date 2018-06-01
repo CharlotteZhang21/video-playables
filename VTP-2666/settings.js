@@ -42,62 +42,86 @@ PiecSettings.customEffects = {};
 
 
 
-PiecSettings.audio = {
-    src: 'bgmusic.mp3',
-    startTime: 0
+PiecSettings.audios = {
+    'audio1': {
+        src: 'bgmusic.mp3',
+        startTime: 0,
+        endTime: 29.5,
+        loop: true,
+        nextAudio: 'audio2',
+    },
+    'audio2': {
+        src: 'bgmusic2.mp3',
+        startTime: 29.5,
+        loop: false,
+        nextAudio: '',
+    },
 }
 
-PiecSettings.initialScript = "intro";
+PiecSettings.initialScript = "waitingForSpin1";
+PiecSettings.initialAudio = "audio1";
 
 PiecSettings.script = {
-    'firstSpin': {
+    'waitingForSpin1': {
         video: 'video.mp4',
         from: 0,
-        to: 6.46,
-        loop: false,
+        to: 1.72,
+        loop: true,
         hud: [
             // { tag: 'health-counter', from: 0, show: true },
             // { text: "Choose your character", htmlTag:'choose-your-character',  src: 'tooltip.png', fontColor: "#ffffff", effect: 'float'},
         ],
         interactions: [
-           
+           { from: 0, src: '', typeOfInteraction: 'tap', htmlTag: 'spin-button', onSuccess: 'spin1'},
         ],
-        autoplay: { script: 'waitingForSpin1' },
+        autoplay: { after: 6000, script: 'waitingForSpin1' },
     },
-    'waitingForSpin1': {
+    'spin1': {
         video: 'video.mp4',
-        from: 6.46,
-        to: 6.463,
-        loop: true,
-        interactions: [
-            { from: 6.46, src: 'spin', typeOfInteraction: 'tap', htmlTag: 'spin-button', onSuccess: 'secondSpin'},
-           
+        from: 1.72,
+        to: 8.2,
+        loop: false,
+        interactions: [           
         ],
-        autoplay: { after: 6000, script: 'secondSpin'}
-    },
-    'secondSpin': {
-        video: 'video.mp4',
-        from: 6.463,
-        to: 18,
-        interactions: [
-            // { from: 0, to: 3, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'intro' }
-        ],
-        autoplay: { after: 1000 , script: 'waitingForSpin2'},
+        autoplay: { script: 'waitingForSpin2'}
     },
     'waitingForSpin2': {
         video: 'video.mp4',
-        from: 18,
-        to: 18.46,
+        from: 8.48,
+        to: 10.28,
+        loop: true,
+        hud: [
+            // { tag: 'health-counter', from: 0, show: true },
+            // { text: "Choose your character", htmlTag:'choose-your-character',  src: 'tooltip.png', fontColor: "#ffffff", effect: 'float'},
+        ],
+        interactions: [
+           { from: 8.2, src: '', typeOfInteraction: 'tap', htmlTag: 'spin-button', onSuccess: 'spin2'},
+        ],
+        autoplay: { after: 6000, script: 'spin2' },
+    },
+    'spin2': {
+        video: 'video.mp4',
+        from: 10.28,
+        to: 20.12,
+        interactions: [
+            // { from: 0, to: 3, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'intro' }
+        ],
+        autoplay: {script: 'waitingForSpin3'},
+    },
+    'waitingForSpin3': {
+        video: 'video.mp4',
+        from: 20.12,
+        to: 22.2,
         loop: true,
         interactions: [
-            { from: 18, src: 'spin', typeOfInteraction: 'tap', htmlTag: 'spin-button', onSuccess: 'thirdSpin'}
+            { from: 20.12, src: '', typeOfInteraction: 'tap', htmlTag: 'spin-button', onSuccess: 'spin3'}
         ],
-        autoplay: { after: 2000, script: 'thirdSpin'},
+        autoplay: { after: 6000, script: 'spin3'},
     },
-    'thirdSpin': {
+    'spin3': {
         video: 'video.mp4',
-        from: 18.46,
-        to: 37.36,
+        from: 22.2,
+        to: 37.1,
         interactions: [
             // { from: 0, to: 3, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'intro' }
         ],

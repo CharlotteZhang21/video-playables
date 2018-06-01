@@ -19,7 +19,8 @@
      update() {}
 
      loadResources() {
-         this.game.load.image('logo', PiecSettings.assetsDir + 'logo.png');
+        if(document.getElementById('logo'))
+             this.game.load.image('logo', PiecSettings.assetsDir + 'logo.png');
          this.game.load.image('cta', PiecSettings.assetsDir + 'cta.png');
 
 

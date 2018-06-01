@@ -6,6 +6,8 @@ class CtaButton extends Phaser.Group {
     constructor(game) {
         super(game);
 
+        this.initSignals();
+
         this.fxLayer = new Phaser.Group(this.game);
 
         this.button = new Phaser.Sprite(this.game, 0, 0, 'cta');
@@ -19,9 +21,17 @@ class CtaButton extends Phaser.Group {
         this.button.inputEnabled = true;
         this.button.input.useHandCursor = true;
         this.button.events.onInputDown.add(function() {
-            doSomething('download');
-        });
 
+            this.onInteract.dispatch();
+            this.game.time.events.add(50, function(){
+                doSomething('download');
+            },this);
+        },this);
+
+    }
+
+    initSignals(){
+        this.onInteract = new Phaser.Signal();
     }
 
     createTip() {

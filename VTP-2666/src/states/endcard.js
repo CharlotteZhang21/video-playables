@@ -21,12 +21,13 @@ class Endcard extends Phaser.State {
         this.game.global.windowHeight = document.body.clientHeight * window.devicePixelRatio;
 
         this.game.onGameComplete.add(this.onGameComplete, this);
+        this.game.onClose.add(this.closeAndMute, this);
 
         this.cta = new CtaButton(this.game);
         this.game.add.existing(this.cta);
 
-        this.logo = new Logo(this.game);
-        this.game.add.existing(this.logo);
+        // this.logo = new Logo(this.game);
+        // this.game.add.existing(this.logo);
 
         this.customEffects = new CustomEffects(this.game);
 
@@ -39,10 +40,15 @@ class Endcard extends Phaser.State {
             }, this);
         }
 
-        this.videoPlayableStateController = new VideoPlayableStateController(this.game, 'videoBg', PiecSettings.script[PiecSettings.initialScript], PiecSettings.script, PiecSettings.variables);
-        this.videoPlayableStateController.transitionToState('firstSpin');
+        this.videoPlayableStateController = new VideoPlayableStateController(this.game, 'videoBg', PiecSettings.script[PiecSettings.initialScript], PiecSettings.script, PiecSettings.variables, PiecSettings.audios, PiecSettings.initialAudio);
+        this.videoPlayableStateController.transitionToState(PiecSettings.initialScript);
         /**debug**/
         // this.videoPlayableStateController.transitionToState('darkPath');
+
+        this.cta.onInteract.add(function(){
+            this.videoPlayableStateController.pauseAllAudio();
+            // doSometing('download');
+        }, this);
 
     }
 
@@ -52,6 +58,11 @@ class Endcard extends Phaser.State {
 
     update() {
         this.videoPlayableStateController.update();
+    }
+
+    closeAndMute() {
+        this.videoPlayableStateController.pauseAllAudio();
+        // doSometing('close');
     }
 
     onGameComplete(){

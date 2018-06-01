@@ -8,135 +8,144 @@ PiecSettings.asoi = false;
 PiecSettings.fontColor = "#ffffff";
 PiecSettings.fontFamily = "Contemporary"; //Make sure that this font is on the css and that there is a div that uses it. (preload-font div)
 
-PiecSettings.collectibles = [
-	{
-        name: 'coins',
-        src: 'coin.png',
-        initialValue: 100,
-        style: { display: true, htmlTag: 'coinBackground', backgroundSrc: 'coinsBackground.png', iconSrc: 'coinIcon.png', fontColor: "#ffffff" }, // if no background is specified, use default rectangle
-    },
-    {
-        name: 'xp',
-        src: 'xp.png',
-        initialValue: 200,
-        style: { display: false },
-    }
-];
+/*===final scene===*/
 
-PiecSettings.audio = {
-    src: 'bgmusic.mp3',
-    startTime: 0
+PiecSettings.ctaMoveDelay = 0; // delay before the cta moves
+PiecSettings.ctaMoveDuration = 800; // duration of the cta moving
+PiecSettings.logoMoveDelay = 0; // delay before the cta moves
+PiecSettings.logoMoveDuration = 800; // duration of the cta moving
+
+PiecSettings.ctaAnimation = 'bulge'; // choose from: bulge
+PiecSettings.ctaAnimationDelay = 0; // delay for animation to start
+PiecSettings.ctaAnimationDuration = 1000; // animation duration
+
+PiecSettings.logoAnimation = 'spinIn'; // choose from: spinIn
+PiecSettings.logoAnimationDelay = 0; // delay for animation to start
+PiecSettings.logoAnimationDuration = 1000; // animation duration
+
+PiecSettings.customEffects = {};
+
+// PiecSettings.customEffects['logo'] = { // name should either match directory in setup/animations or an image in assets
+//     fps: 60,
+//     loop: true,
+//     delay: 0,
+//     htmlId: 'logo', // the id in the html where this will be placed (note also accepts an array)
+//     showOn: 'win', // move this item at the begining
+//     animations: [{ // move this item when user wins
+//         easing: 'QuadraticOut', // see possible easings (above)
+//         delay: 0,
+//         duration: 2000,
+//         animation: 'moveTo',
+//         onComplete: 'swing'
+//     }]
+// };
+
+
+
+PiecSettings.audios = {
+    'audio1': {
+        src: 'bgmusic.mp3',
+        startTime: 0,
+        endTime: 29.5,
+        loop: true,
+        nextAudio: 'audio2',
+    },
+    'audio2': {
+        src: 'bgmusic2.mp3',
+        startTime: 29.5,
+        loop: false,
+        nextAudio: '',
+    },
 }
 
-PiecSettings.initialScript = "intro";
+PiecSettings.initialScript = "waitingForSpin1";
+PiecSettings.initialAudio = "audio1";
 
 PiecSettings.script = {
-    'intro': {
+    'waitingForSpin1': {
         video: 'video.mp4',
         from: 0,
-        to: 5.23,
-        // loop: true,
-        tips: [
-            { text: "Choose your character", htmlTag:'choose-your-character',  src: 'tooltip.png', fontColor: "#ffffff", effect: 'float'},
+        to: 1.72,
+        loop: true,
+        hud: [
+            // { tag: 'health-counter', from: 0, show: true },
+            // { text: "Choose your character", htmlTag:'choose-your-character',  src: 'tooltip.png', fontColor: "#ffffff", effect: 'float'},
         ],
         interactions: [
-            { from: 0, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'character-choice-1', onSuccess: 'male', idleEffect:'pulse', onInteractEffect:'spawnStars'},
-            { from: 0, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'character-choice-2', onSuccess: 'female' }
+           { from: 0, src: '', typeOfInteraction: 'tap', htmlTag: 'spin-button', onSuccess: 'spin1'},
         ],
-        autoplay: {after: 2000, play: 'male'},
+        autoplay: { after: 6000, script: 'waitingForSpin1' },
     },
-    'male': {
+    'spin1': {
         video: 'video.mp4',
-        from: 5.23,
-        to: 20.93,
-        interactions: [
-            { from: 17.6, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'intro', idleEffect:'pulse', onInteractEffect:'spawnStars'},
-            { from: 17.6, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-2', onSuccess: 'darkPath' }
-            // { when: 'during', typeOfInteraction: 'minigame2', htmlTag: 'collectible-area-1', consequences: 'coins++'},
-            // { when: 'onStop', typeOfInteraction: 'swipe', htmlTag: 'interaction-area-1', onSuccess: 'disney2', conditions: 'coins>=100' },
-            // { when: 'onStop', typeOfInteraction: 'swipe', htmlTag: 'interaction-area-2', onSuccess: 'disney3', conditions: 'coins>=200' },
-            // { when: 'onStop', typeOfInteraction: 'swipe', htmlTag: 'interaction-area-3', onSuccess: 'disney4', conditions: 'coins<100' },
-        ]
+        from: 1.72,
+        to: 8.2,
+        loop: false,
+        interactions: [           
+        ],
+        autoplay: { script: 'waitingForSpin2'}
     },
-    'female': {
+    'waitingForSpin2': {
         video: 'video.mp4',
-        from: 0,
-        to: 10,
+        from: 8.48,
+        to: 10.28,
+        loop: true,
+        hud: [
+            // { tag: 'health-counter', from: 0, show: true },
+            // { text: "Choose your character", htmlTag:'choose-your-character',  src: 'tooltip.png', fontColor: "#ffffff", effect: 'float'},
+        ],
         interactions: [
-            { from: 1, to: 3, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'intro' }
-            // { when: 'onStop', typeOfInteraction: 'minigame1', htmlTag: 'interaction-area-1', onSuccess: 'disney5', onFail: 'disney6', consequences: 'coins+=100' },
-        ]
+           { from: 8.2, src: '', typeOfInteraction: 'tap', htmlTag: 'spin-button', onSuccess: 'spin2'},
+        ],
+        autoplay: { after: 6000, script: 'spin2' },
     },
-    'brightPath': {
+    'spin2': {
         video: 'video.mp4',
-        from: 0,
-        to: 10,
+        from: 10.28,
+        to: 20.12,
         interactions: [
-            { from: 1, to: 3, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'intro' }
-            // { when: 'onStop', typeOfInteraction: 'minigame1', htmlTag: 'interaction-area-1', onSuccess: 'disney5', onFail: 'disney6', consequences: 'coins+=100' },
-        ]
+            // { from: 0, to: 3, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'intro' }
+        ],
+        autoplay: {script: 'waitingForSpin3'},
     },
-    'darkPath': {
+    'waitingForSpin3': {
         video: 'video.mp4',
-        from: 20.93,
-        to: 41.63,
+        from: 20.12,
+        to: 22.2,
+        loop: true,
         interactions: [
-            { from: 30, to: 33.67, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-2', onSuccess: 'no-armor'},
-            { from: 36.73, to: 41.63, src: 'cheap', typeOfInteraction: 'tap', htmlTag: 'store-choice-1', onSuccess: 'no-armor' },
-            { from: 36.73, to: 41.63, src: 'pricey', typeOfInteraction: 'tap', htmlTag: 'store-choice-2', onSuccess: 'armor-low-level' }
-            // { when: 'onStop', typeOfInteraction: 'minigame1', htmlTag: 'interaction-area-1', onSuccess: 'disney5', onFail: 'disney6', consequences: 'coins+=100' },
-        ]
+            { from: 20.12, src: '', typeOfInteraction: 'tap', htmlTag: 'spin-button', onSuccess: 'spin3'}
+        ],
+        autoplay: { after: 6000, script: 'spin3'},
     },
-    'no-armor': {
+    'spin3': {
         video: 'video.mp4',
-        from: 41.63,
-        to: 42.8,
+        from: 22.2,
+        to: 37.1,
         interactions: [
-            { from: 36.73, to: 41.63, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-2', onSuccess: 'darkPath' }
-            // { when: 'onStop', typeOfInteraction: 'minigame1', htmlTag: 'interaction-area-1', onSuccess: 'disney5', onFail: 'disney6', consequences: 'coins+=100' },
-        ]
+            // { from: 0, to: 3, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'intro' }
+        ],
+        autoplay: { script: ''},
     },
-    'armor-low-level': {
-        video: 'video.mp4',
-        from: 42.9,
-        to: 45,
-        interactions: [
-            { from: 42.9, to: 45, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-2', onSuccess: 'darkPath' }
-            // { when: 'onStop', typeOfInteraction: 'minigame1', htmlTag: 'interaction-area-1', onSuccess: 'disney5', onFail: 'disney6', consequences: 'coins+=100' },
-        ]
-    }
 };
+
+//============Variables and Flags used within the Video PIEC script to apply conditions and consequences=================
 
 
 //===================================Collectible Component====================================
 
+// PiecSettings.projectile = [
 
-//TBD!!! ------------------------------------------------------------------------------------------------------------
-PiecSettings.minigames = [
-{
-    tag: 'minigame1',
-    type: 'projectile',
-    threshold: 0.3,
-    direction: 'left'
-},
-{
-	tag: 'minigame2',
-	type: 'collectible',
-	object: 'coins',
-	//From the mini game we control when are the onSucces/onFail/Consequences events being triggered
-	//We trigger consequences every time the user collects a collectible object
-}];
+// ];
 
 //TBD !!!!! -------------------------------------------------------------------------------------------------------
-PiecSettings.fxEffects = [
-	{
-		tag: 'pulse',
-		fxReference: 'pulse-burst', //this references to the animation and we can send parameters from above
-		amount: 20,
-		duration: 50,
-		particleSrc: 'star.png',
-	}
-];
+PiecSettings.fxEffects = [{
+    tag: 'pulse',
+    fxReference: 'pulse-burst', //this references to the animation and we can send parameters from above
+    amount: 20,
+    duration: 50,
+    particleSrc: 'star.png',
+}];
 
 PiecSettings.pngAnimations = []
 
