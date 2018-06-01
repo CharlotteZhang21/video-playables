@@ -1,0 +1,210 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-width: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: black;
+    /*background-image: url(../assets/bg.jpg);*/
+}
+
+canvas {
+    display: block;
+    cursor: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.preload-font {
+    position: absolute;
+    bottom: -1000%;
+}
+
+
+
+/*
+ * IEC elements (not being used in the canvas) ------------------------------------------------------------
+ */
+
+ #wrap {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    background-color: #7C3A24;
+}
+
+.layout-item {
+    position: absolute;
+    margin: auto;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.layout-item img {
+    width: 100%;
+}
+
+#game {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
+
+#logo {
+    right: auto;
+    top: 0%;
+    width: 30%;
+}
+#logo-final {
+    width: 60%;
+    height: 10%;
+    top: 10%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+#cta-container,
+#cta-container-final {
+    width: 65%;
+    height: 10%;
+    left: 0;
+    right: 0;
+    bottom: 2%;
+}
+
+#cta-container-final {
+    width: 75%;
+    bottom: 17%;
+}
+
+
+/*
+ * customised ------------------------------------------------------------
+ */
+
+ #character-choice-1, #character-choice-2 {
+    width: 30%;
+    height: 30%;
+    top: 20%;
+ }
+
+ #character-choice-1 {
+    left: 10%;
+ }
+ #character-choice-2 {
+    right: 10%;
+ }
+
+ #path-choice-1, #path-choice-2 {
+    width: 45%;
+    height: 100%;
+    top: 0%;
+ }
+
+ #path-choice-1 {
+    left: 3%;
+ }
+ #path-choice-2 {
+    right: 3%;
+ }
+
+ #store-choice-1, #store-choice-2 {
+    width: 19%;
+    height: 33%;
+    top: 39%;
+ }
+
+ #store-choice-1 {
+    left: 47.5%;
+ }
+ #store-choice-2 {
+    right: 11.5%;
+ }
+
+ #coin-counter {
+   width: 20%;
+   height: 10%;
+   top: 5%;
+   right: 10%;
+}
+
+ #coin-container {
+   width: 10%;
+}
+
+#coins-area {
+   width: 25%;
+   height: 50%;
+   top: 20%;
+   right: 25%;
+}
+
+#health-counter {
+    width: 20%;
+   height: 10%;
+   top: 5%;
+   right: 40%;
+}
+
+#projectile-area {
+    width: 70%;
+    height: 80%;
+    right: 0;
+    top: 10%;;
+}
+
+@media all and (orientation: landscape) {
+   
+    #cta-container {
+        width: 24%;
+        height: 10vw;
+        right: 0;
+        left: 0;
+        bottom: 0%;
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    #cta-container-final{
+        width: 40%;
+        height: 10vw;
+        bottom: 8%;
+        transform: none;
+        -webkit-transform: none;
+    }
+
+}
+
+@media all and (min-width: 768px) and (orientation: portrait) {
+   
+}
+
+@media all and (min-height: 768px) and (orientation: landscape) {
+
+}
+
+/* iphone X */
+
+@media (min-aspect-ratio: 724/354) and (orientation: landscape) {
+
+}
