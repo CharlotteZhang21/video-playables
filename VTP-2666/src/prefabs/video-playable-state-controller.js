@@ -73,8 +73,9 @@ class VideoPlayableStateController {
         if(this.videoEnd) {
             //if there's no more script, then dispatch the game complete
             this.videoEnd = false;
-            if(this.currentState)
+            if(this.currentState){
                 this.transitionToState(this.currentState.autoplay.script);
+            }
             else if(!this.game.global.gameComplete ){
                 this.game.global.gameComplete = true;
                 this.game.onGameComplete.dispatch();
@@ -97,7 +98,9 @@ class VideoPlayableStateController {
         if (stateKeyName != ""){
 
             this.currentState = this.scripts[stateKeyName];
-            
+       
+            console.log(this.currentState)     
+    
             var videoPath = PiecSettings.assetsDir + this.currentState.video;
             this.videoController.play(videoPath, { "from": this.currentState.from, "to": this.currentState.to, "loop": this.currentState.loop });
             

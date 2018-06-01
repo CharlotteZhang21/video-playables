@@ -40,7 +40,7 @@ class Endcard extends Phaser.State {
         }
 
         this.videoPlayableStateController = new VideoPlayableStateController(this.game, 'videoBg', PiecSettings.script[PiecSettings.initialScript], PiecSettings.script, PiecSettings.variables);
-        this.videoPlayableStateController.transitionToState('intro');
+        this.videoPlayableStateController.transitionToState('firstSpin');
         /**debug**/
         // this.videoPlayableStateController.transitionToState('darkPath');
 

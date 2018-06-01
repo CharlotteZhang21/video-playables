@@ -239,7 +239,7 @@ a {
 #logo {
   right: auto;
   top: 0%;
-  width: 30%; }
+  width: 0; }
 
 #logo-final {
   width: 60%;
@@ -251,11 +251,12 @@ a {
 
 #cta-container,
 #cta-container-final {
-  width: 65%;
-  height: 10%;
-  left: 0;
+  width: 24%;
+  height: 10vw;
   right: 0;
-  bottom: 2%; }
+  bottom: 0%;
+  -webkit-transform: none;
+  transform: none; }
 
 #cta-container-final {
   width: 75%;
@@ -264,81 +265,14 @@ a {
 /*
  * customised ------------------------------------------------------------
  */
-#character-choice-1, #character-choice-2 {
-  width: 30%;
-  height: 30%;
-  top: 20%; }
-
-#character-choice-1 {
-  left: 10%; }
-
-#character-choice-2 {
-  right: 10%; }
-
-#path-choice-1, #path-choice-2 {
-  width: 45%;
-  height: 100%;
-  top: 0%; }
-
-#path-choice-1 {
-  left: 3%; }
-
-#path-choice-2 {
-  right: 3%; }
-
-#store-choice-1, #store-choice-2 {
-  width: 19%;
-  height: 33%;
-  top: 39%; }
-
-#store-choice-1 {
-  left: 47.5%; }
-
-#store-choice-2 {
-  right: 11.5%; }
-
-#coin-counter {
-  width: 20%;
-  height: 10%;
-  top: 5%;
-  right: 10%; }
-
-#coin-container {
-  width: 10%; }
-
-#coins-area {
-  width: 25%;
-  height: 50%;
-  top: 20%;
-  right: 25%; }
-
-#health-counter {
-  width: 20%;
-  height: 10%;
-  top: 5%;
-  right: 40%; }
-
-#projectile-area {
-  width: 70%;
-  height: 80%;
+#spin-button {
+  width: 24%;
+  height: 10vw;
   right: 0;
-  top: 10%; }
-
-@media all and (orientation: landscape) {
-  #cta-container {
-    width: 24%;
-    height: 10vw;
-    right: 0;
-    left: 0;
-    bottom: 0%;
-    -webkit-transform: none;
-    transform: none; }
-  #cta-container-final {
-    width: 40%;
-    height: 10vw;
-    bottom: 8%;
-    transform: none;
-    -webkit-transform: none; } }
+  left: 0;
+  bottom: 0%;
+  -webkit-transform: none;
+  transform: none; }
 
 /* iphone X */
 @media all and (orientation: landscape) {

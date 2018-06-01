@@ -41,19 +41,6 @@ PiecSettings.customEffects = {};
 // };
 
 
-PiecSettings.collectibles = [{
-        name: 'coins',
-        src: 'coin.png',
-        initialValue: 100,
-        style: { display: true, htmlTag: 'coinBackground', backgroundSrc: 'coinsBackground.png', iconSrc: 'coinIcon.png', fontColor: "#ffffff" }, // if no background is specified, use default rectangle
-    },
-    {
-        name: 'xp',
-        src: 'xp.png',
-        initialValue: 200,
-        style: { display: false },
-    }
-];
 
 PiecSettings.audio = {
     src: 'bgmusic.mp3',
@@ -63,190 +50,65 @@ PiecSettings.audio = {
 PiecSettings.initialScript = "intro";
 
 PiecSettings.script = {
-    'intro': {
+    'firstSpin': {
         video: 'video.mp4',
         from: 0,
-        to: 5.23,
-        loop: true,
+        to: 6.46,
+        loop: false,
         hud: [
             // { tag: 'health-counter', from: 0, show: true },
             // { text: "Choose your character", htmlTag:'choose-your-character',  src: 'tooltip.png', fontColor: "#ffffff", effect: 'float'},
         ],
         interactions: [
-            { from: 0, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'character-choice-1', onSuccess: 'male', idleEffect: 'pulse', onInteractEffects: 'spawnStars' },
-            { from: 0, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'character-choice-2', onSuccess: 'female' }
+           
         ],
-        autoplay: { after: 5000, script: 'male' },
+        autoplay: { script: 'waitingForSpin1' },
     },
-    'male': {
+    'waitingForSpin1': {
         video: 'video.mp4',
-        from: 5.23,
-        to: 20.93,
-        hud: [
-            { tag: 'health-counter', from: 5.23, show: true },
-            { tag: 'coin-counter', from: 5.23, to: 20.93, show: true },
-        ],
-        collectibles: [
-            { tag: 'coins', from: 9.75, to: 13, htmlTag: 'coins-area', amount: 2 },
-            { tag: 'coins', from: 10.65, to: 14, htmlTag: 'coins-area', amount: 5 },
-        ],
-        interactions: [
-            { from: 17.6, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'shop'},
-            { from: 17.6, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-2', onSuccess: 'darkPath' },
-        ],
-        autoplay: { script: 'shop'}
-    },
-    'female': {
-        video: 'video.mp4',
-        from: 0,
-        to: 3,
-        interactions: [
-            { from: 0, to: 3, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'intro' }
-        ],
-        autoplay: { after: 1000 , script: ''},
-    },
-    'darkPath': {
-        video: 'video.mp4',
-        from: 20.93,
-        // from: 29,
-        to: 41.63,
-        hud: [
-            { tag: 'coin-counter', from: 20.93, to: 41.63, show: true },
-        ],
+        from: 6.46,
+        to: 6.463,
         loop: true,
-        collectibles: [
-            { tag: 'coins', from: 29, to: 31.93, htmlTag: 'coins-area', amount: 5, conditions: 'projectileSuccess==true' },
-        ],
         interactions: [
-            // { from: 30, to: 33.67, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-2', onSuccess: 'no-armor' },
-            { from: 29.7, to: 31.93, typeOfInteraction: 'minigame', gameTag: 'projectile', htmlTag: 'projectile-area', successConsequences: 'coin+=1000&&projectileSuccess==true', failConsequences: 'coin-=1000&&projectileSuccess==false'},
-            { from: 36.73, to: 41.63, src: 'cheap', typeOfInteraction: 'tap', htmlTag: 'store-choice-1', onSuccess: 'no-armor' },
-            { from: 36.73, to: 41.63, src: 'pricey', typeOfInteraction: 'tap', htmlTag: 'store-choice-2', onSuccess: 'armor-low-level', consequences: 'coin-=2000' }
+            { from: 6.46, src: 'spin', typeOfInteraction: 'tap', htmlTag: 'spin-button', onSuccess: 'secondSpin'},
+           
         ],
-        autoplay: { script: 'np-armor'},
+        autoplay: { after: 6000, script: 'secondSpin'}
     },
-    'shop': {
+    'secondSpin': {
         video: 'video.mp4',
-        from: 35.13,
-        // from: 29,
-        to: 41.63,
+        from: 6.463,
+        to: 18,
         interactions: [
-            { from: 36.73, to: 41.63, src: 'cheap', typeOfInteraction: 'tap', htmlTag: 'store-choice-1', onSuccess: 'no-armor' },
-            { from: 36.73, to: 41.63, src: 'pricey', typeOfInteraction: 'tap', htmlTag: 'store-choice-2', conditions: 'coin>=2000', onSuccess: 'armor-low-level', consequences: 'coin-=2000' }
+            // { from: 0, to: 3, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'intro' }
         ],
-        autoplay: {script: 'no-armor'},
+        autoplay: { after: 1000 , script: 'waitingForSpin2'},
     },
-    'no-armor': {
+    'waitingForSpin2': {
         video: 'video.mp4',
-        from: 41.63,
-        to: 42.8,
+        from: 18,
+        to: 18.46,
+        loop: true,
         interactions: [
-            // { from: 36.73, to: 41.63, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-2', onSuccess: '' }
+            { from: 18, src: 'spin', typeOfInteraction: 'tap', htmlTag: 'spin-button', onSuccess: 'thirdSpin'}
         ],
-        autoplay: {script: ''},
+        autoplay: { after: 2000, script: 'thirdSpin'},
     },
-    'armor-low-level': {
+    'thirdSpin': {
         video: 'video.mp4',
-        from: 42.9,
-        to: 45,
+        from: 18.46,
+        to: 37.36,
         interactions: [
-            // { from: 42.9, to: 45, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-2', onSuccess: '' }
+            // { from: 0, to: 3, src: 'btn_character', typeOfInteraction: 'tap', htmlTag: 'path-choice-1', onSuccess: 'intro' }
         ],
-        autoplay: {script: ''}
-    }
+        autoplay: { script: ''},
+    },
 };
 
 //============Variables and Flags used within the Video PIEC script to apply conditions and consequences=================
-PiecSettings.variables = {
-    'projectileSuccess' : {
-        value: false,
-    },
 
-};
 
 //===================================Collectible Component====================================
-
-PiecSettings.collectibles = {
-    'coins': {
-        src: 'coin',
-        htmlTag: 'coin-container',
-        initialValue: 0,
-        valueRange: {min: 0, max: 100000},
-        eachItemCountsAs: 300,
-        counter: {
-            tag: 'coin-counter',    //tag has to be [ELEMENT]-counter
-            htmlTag: 'coin-counter',
-            iconSrc: 'coinStack',
-            backgroundSrc: 'wallet', // counter's background source
-                                     // if it's a progress bar, name it the same as the name of the bar
-                                     // like: healthBar, because the fill will be automatically called healthBar-fill
-            style: 'number', //choose among number, rectangle_progressbar, circle_progressbar 
-
-        },
-        onCollectEffects: ['flyToGoal'],
-    },
-    // 'coins': {
-    //     src: 'coin',
-    //     htmlTag: 'coin-container',
-    //     initialValue: 100,
-    //     valueRange: {min: 0, max: 100},
-    //     eachItemCountsAs: -30, // if <0, then decrease the value
-    //     counter: {
-    //         tag: 'health-counter',
-    //         htmlTag: 'health-counter',
-    //         iconSrc: 'coinStack',
-    //         backgroundSrc: 'healthBar', // counter's background source
-    //                                  // if it's a progress bar, name it the same as the name of the bar
-    //                                  // like: healthBar, because the fill will be automatically called healthBar-fill
-    //         style: 'rectangle_progressbar', //choose among number, rectangle_progressbar, circle_progressbar 
-
-    //     },
-    //     onCollectEffects: ['flyToGoal'],
-    // },
-    // 'coins': {
-    //     src: 'coin',
-    //     htmlTag: 'coin-container',
-    //     initialValue: 0,
-    //     valueRange: {min: 0, max: 100},
-    //     eachItemCountsAs: 30,
-    //     counter: {
-    //         tag: 'health-counter',
-    //         htmlTag: 'health-counter',
-    //         iconSrc: 'coinStack',
-    //         backgroundSrc: 'circleBar', // counter's background source
-    //                                  // if it's a progress bar, name it the same as the name of the bar
-    //                                  // like: healthBar, because the fill will be automatically called healthBar-fill
-    //         style: 'circle_progressbar', //choose among number, rectangle_progressbar, circle_progressbar 
-
-    //     },
-    //     onCollectEffects: ['flyToGoal'],
-    // },
-
-};
-
-// PiecSettings.uiElement
-// PiecSettings.HudElement = {
-//     'coin-counter' : {
-//         htmlTag: 'coin-counter',
-//         iconSrc: 'coinStack',
-//         backgroundSrc: 'wallet', // counter's background source
-//                                  // if it's a progress bar, name it the same as the name of the bar
-//                                  // like: healthBar, because the fill will be automatically called healthBar-fill
-//         style: 'number', //choose among number, rectangle_progressbar, circle_progressbar 
-
-//     }
-// }
-//====================================Projectile component mini game=========================
-
-PiecSettings.minigames = {
-    'projectile': {
-        type: 'projectile',
-        src: 'projectile',
-        direction: 'inverse', // ('same', 'inverse', 'random')
-                              //if the direction is different from the assets, choose inverse, otherwise, same
-        amount: 3,
-    },
-};
 
 // PiecSettings.projectile = [
 

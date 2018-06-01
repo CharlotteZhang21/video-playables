@@ -20,39 +20,11 @@
 
      loadResources() {
          this.game.load.image('logo', PiecSettings.assetsDir + 'logo.png');
-         this.game.load.image('cta', PiecSettings.assetsDir + 'download.png');
+         this.game.load.image('cta', PiecSettings.assetsDir + 'cta.png');
 
 
          //----------*my customised preload*-----------
-         this.game.load.image('btn_character', PiecSettings.assetsDir + 'character_1.png');
-
-         this.game.load.image('pricey', PiecSettings.assetsDir + 'pricey.png');
-         this.game.load.image('cheap', PiecSettings.assetsDir + 'cheap.png');
-
-         /*============== collectibles ====================*/
-         this.game.load.image('coin', PiecSettings.assetsDir + 'coin.png');
-         this.game.load.image('coinStack', PiecSettings.assetsDir + 'coinstack.png');
-         this.game.load.image('wallet', PiecSettings.assetsDir + 'wallet.png');
-
-         this.game.load.image('healthBar', PiecSettings.assetsDir + 'healthbar.png');
-         this.game.load.image('healthBar-fill', PiecSettings.assetsDir + 'healthbar-fill.png');
-
-         this.game.load.image('circleBar', PiecSettings.assetsDir + 'circlebar.png');
-         this.game.load.image('circleBar-fill', PiecSettings.assetsDir + 'circlebar-fill.png');
-
-         this.game.load.image('projectile', PiecSettings.assetsDir + 'projectile.png');
-
-         
-         // this.game.load.image('cta-2', PiecSettings.assetsDir + 'download_2.png');
-
-         // this.game.global.animations = {};
-
-         // PiecSettings.animation = PiecSettings.animation || {};
-
-         // var defaultAnimation = {
-         //     frameRate: 60,
-         //     scale: 1
-         // };
+         this.game.load.image('spin', PiecSettings.assetsDir + 'spin.png');
 
      }
 
