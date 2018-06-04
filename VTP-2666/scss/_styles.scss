@@ -49,6 +49,16 @@ a {
     width: 100%;
 }
 
+#vungle-close {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#vungle-close.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
 #videoBg {
     position: absolute;
     transform: translate(-50%);
@@ -143,6 +153,9 @@ a {
     #cta-container{
         width: 30%;
         bottom: 13%;
+    }
+    #cta-container-final {
+        bottom: 18%;
     }
 }
 

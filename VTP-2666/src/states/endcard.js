@@ -32,7 +32,7 @@ class Endcard extends Phaser.State {
 
 
         if (PiecSettings.timer !== undefined) {
-            this.game.time.events.add(4000, function() {
+            this.game.time.events.add(PiecSettings.timer, function() {
                 document.getElementById("vungle-close").className = "visible";
             }, this);
         }

@@ -67,6 +67,12 @@ class AudioController {
         if (args !== undefined) {
             if (args.loop !== undefined && typeof args.loop == 'boolean') {
                 this.audios[keyName].loop = args.loop;
+                // if(this.audios[keyName].loop) {
+                //     if (this.audios[keyName].ended) {
+                //             this.audios[keyName].currentTime = 0;
+                            
+                //     }
+                // }
             }
         }
     }

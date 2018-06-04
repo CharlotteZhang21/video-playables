@@ -53,6 +53,8 @@ class VideoPlayableStateController {
             if (!this.firstInteraction) {
                 this.firstInteraction = true;
                 this.playAudio(this.currentAudio);
+                //timer
+                document.getElementById('vungle-close').className = 'visible';
             }
 
             this.cancelAutoPlayTimer();

@@ -2,7 +2,7 @@ var PiecSettings = PiecSettings || {};
 
 PiecSettings.version = "-";
 
-PiecSettings.timer = true;
+PiecSettings.timer = 6000;
 PiecSettings.asoi = false;
 
 PiecSettings.fontColor = "#ffffff";
@@ -74,7 +74,7 @@ PiecSettings.script = {
         interactions: [
            { from: 0, src: '', typeOfInteraction: 'tap', htmlTag: 'spin-button', onSuccess: 'spin1'},
         ],
-        autoplay: { after: 6000, script: 'waitingForSpin1' },
+        autoplay: { after: 6000, script: 'spin1' },
     },
     'spin1': {
         video: 'video.mp4',
