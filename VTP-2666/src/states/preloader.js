@@ -26,8 +26,6 @@
         
          this.game.load.image('cta', PiecSettings.assetsDir + 'cta.png');
 
-         this.game.load.image('background', PiecSettings.assetsDir + 'bg.jpg');
-
 
          //----------*my customised preload*-----------
          this.game.load.image('spin', PiecSettings.assetsDir + 'spin.png');
