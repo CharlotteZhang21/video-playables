@@ -194,7 +194,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
   background-color: black;
-  /*background-image: url(bg.jpg);*/ }
+  background-image: url(bg.jpg); }
 
 canvas {
   display: block;
@@ -217,8 +217,14 @@ a {
   left: 0;
   overflow: hidden;
   height: 100%;
+  width: 100%; }
+
+#videoBg {
+  position: absolute;
+  transform: translate(-50%);
+  left: 50%;
   width: 100%;
-  background-color: #7C3A24; }
+  bottom: 0; }
 
 .layout-item {
   position: absolute;
@@ -251,12 +257,15 @@ a {
 
 #cta-container,
 #cta-container-final {
-  width: 24%;
+  width: 30%;
   height: 10vw;
   right: 0;
   bottom: 0%;
   -webkit-transform: none;
   transform: none; }
+
+#cta-container {
+  right: 2%; }
 
 #cta-container-final {
   width: 100%;
@@ -274,7 +283,27 @@ a {
   -webkit-transform: none;
   transform: none; }
 
-/* iphone X */
+@media all and (min-height: 768px) and (orientation: landscape) {
+  #videoBg {
+    top: 10%; }
+  #spin-button {
+    bottom: 25%; }
+  #cta-container {
+    width: 30%;
+    bottom: 13%; } }
+
+/*iPhone X portrait*/
+/*iPhone X landscape*/
+@media (min-aspect-ratio: 724 / 354) and (orientation: landscape) {
+  #videoBg {
+    height: 100%; }
+  #cta-container {
+    width: 28%;
+    height: 18%;
+    right: 5%; }
+  #cta-container-final {
+    height: 8vw; } }
+
 @media all and (orientation: landscape) {
   #vungle-header.landscape-light a {
     color: #ffffff;

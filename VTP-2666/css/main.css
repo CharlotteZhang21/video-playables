@@ -224,7 +224,6 @@ a {
   transform: translate(-50%);
   left: 50%;
   width: 100%;
-  top: 10%;
   bottom: 0; }
 
 .layout-item {
@@ -258,12 +257,15 @@ a {
 
 #cta-container,
 #cta-container-final {
-  width: 24%;
+  width: 30%;
   height: 10vw;
   right: 0;
   bottom: 0%;
   -webkit-transform: none;
   transform: none; }
+
+#cta-container {
+  right: 2%; }
 
 #cta-container-final {
   width: 100%;
@@ -282,8 +284,12 @@ a {
   transform: none; }
 
 @media all and (min-height: 768px) and (orientation: landscape) {
+  #videoBg {
+    top: 10%; }
+  #spin-button {
+    bottom: 25%; }
   #cta-container {
-    width: 25%;
+    width: 30%;
     bottom: 13%; } }
 
 /*iPhone X portrait*/
@@ -292,9 +298,11 @@ a {
   #videoBg {
     height: 100%; }
   #cta-container {
-    width: 22%;
-    height: 16%;
-    right: 5%; } }
+    width: 28%;
+    height: 18%;
+    right: 5%; }
+  #cta-container-final {
+    height: 8vw; } }
 
 @media all and (orientation: landscape) {
   #vungle-header.landscape-light a {

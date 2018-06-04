@@ -25,10 +25,7 @@ class Endcard extends Phaser.State {
 
         this.cta = new CtaButton(this.game);
         this.game.add.existing(this.cta);
-
-        // this.logo = new Logo(this.game);
-        // this.game.add.existing(this.logo);
-
+        
         this.customEffects = new CustomEffects(this.game);
 
 
@@ -45,11 +42,14 @@ class Endcard extends Phaser.State {
         /**debug**/
         // this.videoPlayableStateController.transitionToState('darkPath');
 
-        this.cta.onInteract.add(function(){
-            this.videoPlayableStateController.pauseAllAudio();
-            // doSometing('download');
-        }, this);
+        this.setController();
 
+    }
+
+    setController() {
+      this.cta.onInteract.add(function(){
+            this.videoPlayableStateController.pauseAllAudio();
+        }, this);
     }
 
     resize() {}
@@ -62,7 +62,6 @@ class Endcard extends Phaser.State {
 
     closeAndMute() {
         this.videoPlayableStateController.pauseAllAudio();
-        doSometing('close');
     }
 
     onGameComplete(){
@@ -77,17 +76,6 @@ class Endcard extends Phaser.State {
               function(sprite) {
 
                   Tweener[PiecSettings.ctaAnimation](sprite, PiecSettings.ctaAnimationDelay, PiecSettings.ctaAnimationDuration);
-              });
-
-        Tweener.moveToDom(
-              this.logo.logo,
-              'logo-final',
-              PiecSettings.logoMoveDelay,
-              PiecSettings.logoMoveDuration,
-              Phaser.Easing.Quadratic.Out,
-              function(sprite) {
-
-                  Tweener[PiecSettings.logoAnimation](sprite, PiecSettings.logoAnimationDelay, PiecSettings.logoAnimationDuration);
               });
 
     }

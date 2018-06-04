@@ -40,7 +40,7 @@
     <div id="wrap">
 
         <!-- <video src="video.mp4" playsinline loop autoplay></video> -->
-        <video preload playsinline muted autoplay id='videoBg' height="100%"></video>
+        <video preload playsinline muted autoplay id='videoBg'></video>
         
         
         <div class="layout-item" id="spin-button"></div>
