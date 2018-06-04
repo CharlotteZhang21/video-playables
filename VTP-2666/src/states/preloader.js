@@ -19,9 +19,14 @@
      update() {}
 
      loadResources() {
+
+
         if(document.getElementById('logo'))
              this.game.load.image('logo', PiecSettings.assetsDir + 'logo.png');
+        
          this.game.load.image('cta', PiecSettings.assetsDir + 'cta.png');
+
+         this.game.load.image('background', PiecSettings.assetsDir + 'bg.jpg');
 
 
          //----------*my customised preload*-----------

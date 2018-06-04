@@ -15,7 +15,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
     background-color: black;
-    /*background-image: url(../assets/bg.jpg);*/
+    background-image: url(../assets/bg.jpg);
 }
 
 canvas {
@@ -47,7 +47,15 @@ a {
     overflow: hidden;
     height: 100%;
     width: 100%;
-    background-color: #7C3A24;
+}
+
+#videoBg {
+    position: absolute;
+    transform: translate(-50%);
+    left: 50%;
+    width: 100%;
+    top: 10%;
+    bottom: 0;
 }
 
 .layout-item {
@@ -116,24 +124,6 @@ a {
  }
 
 @media all and (orientation: landscape) {
-   
-    // #cta-container {
-    //     width: 24%;
-    //     height: 10vw;
-    //     right: 0;
-    //     left: 0;
-    //     bottom: 0%;
-    //     -webkit-transform: none;
-    //     transform: none;
-    // }
-
-    // #cta-container-final{
-    //     width: 40%;
-    //     height: 10vw;
-    //     bottom: 8%;
-    //     transform: none;
-    //     -webkit-transform: none;
-    // }
 
 }
 
@@ -142,11 +132,25 @@ a {
 }
 
 @media all and (min-height: 768px) and (orientation: landscape) {
+    #cta-container{
+        width: 25%;
+        bottom: 13%;
+    }
+}
+
+/*iPhone X portrait*/
+@media (min-device-height: 724px) and (max-device-width: 376px) and (min-aspect-ratio: 354/724) and (orientation: portrait){
 
 }
 
-/* iphone X */
-
+/*iPhone X landscape*/
 @media (min-aspect-ratio: 724/354) and (orientation: landscape) {
-
+    #videoBg {
+        height: 100%;
+    }
+    #cta-container {
+        width: 22%;
+        height: 16%;
+        right: 5%;
+    }
 }

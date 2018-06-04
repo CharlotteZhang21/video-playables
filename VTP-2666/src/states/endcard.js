@@ -62,7 +62,7 @@ class Endcard extends Phaser.State {
 
     closeAndMute() {
         this.videoPlayableStateController.pauseAllAudio();
-        // doSometing('close');
+        doSometing('close');
     }
 
     onGameComplete(){
